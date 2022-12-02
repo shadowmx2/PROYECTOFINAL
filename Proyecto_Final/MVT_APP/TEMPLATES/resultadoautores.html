@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block contenido %}
+<h1> Autores</h1>
+<p></p>
+
+<table>
+    <form action="{% url 'autor_resultados' %}" method="get">
+        <p>
+            Autor: <input type="text" name="nombre">
+            <input type="submit" value="Buscar!">
+        </p>
+    </form>
+    
+
+    
+<ul>
+    {% for autor in autores %}
+        <li>{{autor.nombre}} - {{autor.apellido}} - {{autor.email}}</li>
+    {% endfor%}
+</ul>
+</table>
+
+<a class="btn btn-primary" href="{% url 'autores' %}">Volver</a>
+
+{% endblock %}

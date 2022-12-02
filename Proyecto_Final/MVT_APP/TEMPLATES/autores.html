@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block contenido %}
+<h1>Autores disponibles</h1>
+<p></p>
+
+
+<table style="align-content: center;"> 
+    <form action="{% url 'autor_resultados' %}" method="get">
+        <p>
+            Nombre Autor: <input type="text" name="nombre">
+    
+   
+             
+            <input type="submit" value="Buscar!" class="btn btn-primary" >
+      
+        </p>
+    </form>
+
+<form method="post" class="caption" style="text-align: center;">
+    {% csrf_token %}
+
+    {{ formulario.as_p }}
+
+    <input type="submit" value="Cargar Autor" class="btn btn-primary">
+</form>
+
+</table>
+{% endblock %}

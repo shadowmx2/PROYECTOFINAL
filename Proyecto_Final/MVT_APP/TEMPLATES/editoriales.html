@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{% block contenido %}
+<h1>Editoriales disponibles</h1>
+<p></p>
+
+ 
+<table style="align-content: center;"> 
+    <form action="{% url 'editorial_resultados' %}" method="get">
+        <p>
+            Nombre Editorial: <input type="text" name="nombre_editorial">
+    
+   
+             
+            <input type="submit" value="Buscar!" class="btn btn-primary" >
+      
+        </p>
+    </form>
+
+<form method="post" class="caption" style="text-align: center;">
+    {% csrf_token %}
+
+    {{ formulario.as_p }}
+
+    <input type="submit" value="Cargar Editorial" class="btn btn-primary">
+</form>
+
+</table>
+
+{% endblock %}

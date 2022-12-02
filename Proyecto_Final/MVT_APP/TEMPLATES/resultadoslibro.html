@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block contenido %}
+<h1>Libros disponibles</h1>
+<p></p>
+
+<table>
+    <form action="{% url 'libro_resultados' %}" method="get">
+        <p>
+            Libro: <input type="text" name="titulo_libro">
+            <input type="submit" value="Buscar!">
+        </p>
+    </form>
+    
+
+    
+<ul>
+    {% for libro in libros %}
+        <li>{{libro.titulo}} - {{libro.fecha_Publicacion}} - {{libro.genero}}</li>
+    {% endfor%}
+</ul>
+</table>
+
+<a class="btn btn-primary" href="{% url 'libros' %}">Volver</a>
+
+{% endblock %}

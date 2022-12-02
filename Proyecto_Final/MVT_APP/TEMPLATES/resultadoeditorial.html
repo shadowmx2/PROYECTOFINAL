@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block contenido %}
+<h1>Editoriales disponibles</h1>
+<p></p>
+
+<table>
+    <form action="{% url 'editorial_resultados' %}" method="get">
+        <p>
+            Nombre Editorial: <input type="text" name="nombre_editorial">
+            <input type="submit" value="Buscar!">
+        </p>
+    </form>
+    
+
+    
+<ul>
+    {% for editorial in editoriales %}
+        <li>{{editorial.nombre}} - {{editorial.fecha_creacion}} - {{editorial.pais}}</li>
+    {% endfor%}
+</ul>
+</table>
+
+<a class="btn btn-primary" href="{% url 'editoriales' %}">Volver</a>
+
+{% endblock %}
