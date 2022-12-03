@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+
+{% block contenido %}
+
+{% if errors %}
+    <p> Error: {{errors}}</p>
+{% endif %}
+<form method="post" class="caption" style="text-align: center;">
+    {% csrf_token %}
+
+    {{ formulario.as_p }}
+
+    <input type="submit" value="Iniciar Sesion" class="btn btn-primary">
+</form>
+
+
+{% endblock %}

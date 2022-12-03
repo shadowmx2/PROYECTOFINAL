@@ -25,7 +25,8 @@
                 <a class="navbar-brand" href="{% url 'libros' %}">Libros</a>
                 <a class="navbar-brand" href="{% url 'autores' %}">Autores</a>
                 <a class="navbar-brand" href="{% url 'editoriales' %}">Editoriales</a>
-                <a class="btn btn-primary" href="#signup">Sign Up</a>
+                <a >{{request.user}}</a>
+                <a class="btn btn-primary" href="#signup"> Sign Up</a>
             </div>
         </nav>
         <!-- Masthead-->
@@ -52,7 +53,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <p class="text-muted small mb-4 mb-lg-0 text-center">&copy; Leandro Araujo 2022. All Rights Reserved.</p>
+                        <p class="text-muted small mb-4 mb-lg-0 text-center">&copy; Libreria Internacional 2022. All Rights Reserved.</p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">

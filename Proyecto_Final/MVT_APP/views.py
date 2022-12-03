@@ -1,9 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from django.http import HttpResponse
 from MVT_APP.forms import *
 from MVT_APP.models import *
-import datetime
+ 
+
+from  django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login,logout, authenticate
 
 def homepage(request):
     return render(request, 'homepage.html', {'familia':'1'})    
@@ -81,3 +84,44 @@ def resultados_busqueda_autores(request):
 
     autores= Autor.objects.filter(nombre__icontains=autor)
     return render(request, "resultadoautores.html", {"autores": autores})
+
+
+  ##Login y registro
+  # 
+
+def iniciar_sesion(request):
+
+    errors= ""
+
+    if request.method == "POST":
+        formulario = AuthenticationForm(request,data=request.POST)
+
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+
+            user = authenticate(username=data["username"], password=["password"])
+
+            if user is not None:
+                login(request, user)
+                return redirect("homepage")
+            else:
+                return render(request,"login.html",{"formulario":formulario, "errors": "Credenciales Invalidas"})
+        else:
+            return render(request,"login.html",{"formulario":formulario, "errors": "Credenciales Invalidas"})
+    formulario = AuthenticationForm()
+    return render(request, "login.html",{"formulario":formulario, "errors": errors})
+
+def registrar_usuario(request):
+     
+    if request.method =="POST":
+        formulario = UserRegisterForm(request.POST)
+
+        if formulario.is_valid():
+            
+            formulario.save()
+            return redirect("homepage")
+        else:
+            return render(request, "register.html", { "formulario": formulario, "errors": formulario.errors})
+
+    formulario  = UserRegisterForm()
+    return render(request, "register.html", { "formulario": formulario})

@@ -9,4 +9,6 @@ urlpatterns = [
     path("editoriales/buscar/resultados/", resultados_busqueda_editoriales, name="editorial_resultados"),
     path("libros/buscar/resultados/", resultados_busqueda_libros, name="libro_resultados"),
     path("autores/buscar/resultados/", resultados_busqueda_autores, name="autor_resultados"),
+    path("login/", iniciar_sesion, name="auth-login"),
+    path("registro/", registrar_usuario, name="auth-register"),
 ]
