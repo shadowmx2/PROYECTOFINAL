@@ -25,9 +25,10 @@ class LibroFormulario(forms.Form):
     calificacion = forms.IntegerField()
 
 class UserRegisterForm(UserCreationForm):
+    username= forms.CharField(label="Usuario")
     last_name = forms.CharField(label="Apellido")
     first_name = forms.CharField(label="Nombre")
-    email = forms.EmailField(label="Correo electronico")
+    email = forms.EmailField(label="Email")
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
     password2 = forms.CharField(label="Confirme el password", widget=forms.PasswordInput)
     

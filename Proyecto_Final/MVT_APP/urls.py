@@ -11,4 +11,5 @@ urlpatterns = [
     path("autores/buscar/resultados/", resultados_busqueda_autores, name="autor_resultados"),
     path("login/", iniciar_sesion, name="auth-login"),
     path("registro/", registrar_usuario, name="auth-register"),
+    path("logout/", cerrar_sesion, name="auth-logout"),
 ]
