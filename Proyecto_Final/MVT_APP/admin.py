@@ -5,3 +5,4 @@ from MVT_APP.models import *
 admin.site.register(Libro)
 admin.site.register(Autor)
 admin.site.register(Editorial)
+admin.site.register(Avatar)

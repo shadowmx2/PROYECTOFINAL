@@ -122,6 +122,10 @@ STATIC_URL = 'static/'
 # URL para el LOGIN
 LOGIN_URL  = "/login/"
 
+# Configuraciones MEDIA 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/imagenes")
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

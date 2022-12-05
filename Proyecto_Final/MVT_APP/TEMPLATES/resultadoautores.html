@@ -16,8 +16,12 @@
 
     
 <ul>
+    {% if autores.count == 0 %}
+    <p>No se encontraron Autores!! </p>
+    {% endif%}
     {% for autor in autores %}
         <li>{{autor.nombre}} - {{autor.apellido}} - {{autor.email}}</li>
+         
     {% endfor%}
 </ul>
 </table>

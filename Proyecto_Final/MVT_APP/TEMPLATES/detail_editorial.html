@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h1>Detalle del la editorial</h1>
+
+<p>Nombre: {{editorial.nombre}}</p>
+<p>Fecha: {{editorial.fecha_creacion}}</p>
+<p>Pais: {{editorial.pais}}</p>
+
+<a class="btn btn-primary" href="{% url 'editorial-list' %}">Volver</a>
+{% endblock %}

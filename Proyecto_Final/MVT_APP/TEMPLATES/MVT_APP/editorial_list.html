@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h1>Desafios entregables</h1>
+
+<ul>
+    {% for editorial in object_list %}
+        <li>
+            {{editorial.nombre}} 
+            <a href="{% url 'editorial-detail' editorial.id %}">Detalle</a> 
+            <a href="{% url 'editorial-edit' editorial.id %}">Actualizar</a> 
+            <a href="{% url 'editorial-delete' editorial.id %}">Borrar</a> 
+        </li>
+    {% endfor %}
+
+    
+</ul>
+
+{% endblock %}

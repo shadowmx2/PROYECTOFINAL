@@ -8,18 +8,32 @@ from MVT_APP.models import *
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login,logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from django.views.generic import ListView, DetailView,  UpdateView, DeleteView
+
 
 def homepage(request):
-    return render(request, 'homepage.html', {'familia':'1'})    
+    
+
+    return render(request, 'homepage.html', avatar_mostrar(request))    
 
     
+def avatar_mostrar(request):
+    if request.user.is_authenticated:    
+        imagen_model = Avatar.objects.filter(user= request.user.id).order_by("-id")[0]
+        imagen_url = imagen_model.imagen.url
+    else:
+        imagen_url = ""
+    return {"imagen_url": imagen_url}
+
 @login_required
 def libros(request):
-    return render(request, 'libros.html', {'familia':'1'})    
+    return render(request, 'libros.html')    
 
 @login_required
 def autores(request):
-    return render(request, 'autores.html', {'familia':'1'})    
+    return render(request, 'autores.html')    
 
 @login_required
 def editoriales(request):
@@ -82,7 +96,7 @@ def autores(request):
     formulario = AutorFormulario()    
     contexto = {"formulario": formulario}
     return render(request, "autores.html", contexto)
-    
+
 @login_required
 def resultados_busqueda_autores(request):
     autor = request.GET["nombre"]
@@ -114,6 +128,7 @@ def iniciar_sesion(request):
             return render(request, "login.html", {"form": formulario, "errors": formulario.errors})
     formulario = AuthenticationForm()
     return render(request, "login.html", {"form": formulario, "errors": errors})
+
 @login_required
 def cerrar_sesion(request):
     logout(request)
@@ -133,3 +148,80 @@ def registrar_usuario(request):
 
     formulario  = UserRegisterForm()
     return render(request, "register.html", { "formulario": formulario})
+
+
+
+@login_required
+def editar_perfil(request):
+
+    usuario = request.user
+
+    if request.method == "POST":
+        # * cargar informacion en el formulario
+        formulario = UserEditForm(request.POST)
+
+        # ! validacion del formulario
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+
+            # * actualizacion del usuario con los datos del formulario
+            usuario.email = data["email"]
+            usuario.first_name = data["first_name"]
+            usuario.last_name = data["last_name"]
+
+            usuario.save()
+            return redirect("homepage")
+        else:
+            return render(request, "editar_perfil.html", {"form": formulario, "errors": formulario.errors})
+    else:
+        # * crear formulario vacio
+        formulario = UserEditForm(initial = {"email": usuario.email, "first_name": usuario.first_name, "last_name": usuario.last_name})
+
+    return render(request, "editar_perfil.html", {"form": formulario})
+
+
+@login_required
+def agregar_avatar(request):
+    
+    if request.method == "POST":
+        formulario = AvatarForm(request.POST, files=request.FILES)
+        print(request.FILES, request.POST)
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+
+            usuario = request.user
+
+            avatar = Avatar(user=usuario, imagen=data["imagen"])
+            avatar.save()
+
+            return redirect("homepage")
+        else:
+            return render(request, "agregar_avatar.html", {"form": formulario, "errors": formulario.errors })
+    formulario = AvatarForm()
+
+    return render(request, "agregar_avatar.html", {"form": formulario})
+
+
+ 
+
+class EditorialDelete(DeleteView):
+
+    model = Editorial
+    success_url = "/editoriales/"
+
+class EditorialEdit(UpdateView):
+
+    model = Editorial
+    success_url = "/editoriales/"
+    fields = ["fecha_creacion", "pais"]
+
+class EditorialList(LoginRequiredMixin, ListView):
+
+    model = Editorial
+    template_name = "list_editorial.html"
+
+
+class EditorialDetail(DetailView):
+
+    model = Editorial
+    template_name = "detail_editorial.html"

@@ -16,8 +16,12 @@
 
     
 <ul>
+    {% if editoriales.count == 0 %}
+    <p>No se encontraron Editoriales!! </p>
+    {% endif%}
+
     {% for editorial in editoriales %}
-        <li>{{editorial.nombre}} - {{editorial.fecha_creacion}} - {{editorial.pais}}</li>
+        <li>{{editorial.nombre}} - {{editorial.fecha_creacion}}    <a href="{% url 'editorial-delete' editorial.id %}">Borrar</a> <a href="{% url 'editorial-edit' editorial.id %}">  Editar</a></li>
     {% endfor%}
 </ul>
 </table>

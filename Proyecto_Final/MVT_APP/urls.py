@@ -12,4 +12,11 @@ urlpatterns = [
     path("login/", iniciar_sesion, name="auth-login"),
     path("registro/", registrar_usuario, name="auth-register"),
     path("logout/", cerrar_sesion, name="auth-logout"),
+    path("perfil/editar/", editar_perfil, name="auth-editar-perfil"),
+    path("perfil/avatar/", agregar_avatar, name="auth-avatar"),    
+    path("editoriales/borrar/<pk>", EditorialDelete.as_view(), name="editorial-delete"),
+    path("editoriales/actualizar/<pk>", EditorialEdit.as_view(), name="editorial-edit"),
+    path("editoriales/listar/", EditorialList.as_view(), name="editorial-list"),
+    path("editoriales/detalle/<pk>", EditorialDetail.as_view(), name="editorial-detail"),
+
 ]

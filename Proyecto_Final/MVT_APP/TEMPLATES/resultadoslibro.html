@@ -16,6 +16,9 @@
 
     
 <ul>
+    {% if libros.count == 0 %}
+    <p>No se encontraron Libros!! </p>
+    {% endif%}
     {% for libro in libros %}
         <li>{{libro.titulo}} - {{libro.fecha_Publicacion}} - {{libro.genero}}</li>
     {% endfor%}
