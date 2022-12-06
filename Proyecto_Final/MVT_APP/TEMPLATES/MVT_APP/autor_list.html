@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h1>Editoriales disponibles</h1>
+
+<ul>
+    {% for autor in object_list %}
+        <li>
+            {{autor.nombre}} 
+            <a href="{% url 'autor-detail' autor.id %}">Detalle</a> 
+            <a href="{% url 'autor-edit' autor.id %}">Actualizar</a> 
+            <a href="{% url 'autor-delete' autor.id %}">Borrar</a> 
+        </li>
+    {% endfor %}
+
+    
+</ul>
+
+{% endblock %}

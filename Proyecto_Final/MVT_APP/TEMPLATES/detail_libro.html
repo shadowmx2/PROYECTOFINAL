@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h1>Detalle del libro</h1>
+
+<p>TItulo: {{libro.titulo}}</p>
+<p>Fecha Publicacion: {{libro.fecha_Publicacion}}</p>
+<p>Genero: {{libro.genero}}</p>
+<p>Autor: {{libro.autor}}</p>
+<p>Editorial: {{libro.editorial}}</p>
+<p>Calificacion: {{libro.calificacion}}</p>
+
+<a class="btn btn-primary" href="{% url 'libro-list' %}">Volver</a>
+{% endblock %}
+
+ 

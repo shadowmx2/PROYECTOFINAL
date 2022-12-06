@@ -18,5 +18,13 @@ urlpatterns = [
     path("editoriales/actualizar/<pk>", EditorialEdit.as_view(), name="editorial-edit"),
     path("editoriales/listar/", EditorialList.as_view(), name="editorial-list"),
     path("editoriales/detalle/<pk>", EditorialDetail.as_view(), name="editorial-detail"),
+    path("libros/borrar/<pk>", LibroDelete.as_view(), name="libro-delete"),
+    path("libros/actualizar/<pk>", LibroEdit.as_view(), name="libro-edit"),
+    path("libros/listar/", LibroList.as_view(), name="libro-list"),
+    path("libros/detalle/<pk>", LibroDetail.as_view(), name="libro-detail"),
+    path("autores/borrar/<pk>", AutorDelete.as_view(), name="autor-delete"),
+    path("autores/actualizar/<pk>", AutorEdit.as_view(), name="autor-edit"),
+    path("autores/listar/", AutorList.as_view(), name="autor-list"),
+    path("autores/detalle/<pk>", AutorDetail.as_view(), name="autor-detail"),
 
 ]

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h1>Detalle del Autor</h1>
+
+<p>Nombre: {{autor.nombre}}</p>
+<p>Apellido: {{autor.apellido}}</p>
+<p>Fecha Nacimiento: {{autor.fecha_nacimiento}}</p>
+<p>Edad: {{autor.edad}}</p>
+<p>Email: {{autor.email}}</p>
+<p>Nacionalidad: {{autor.nacionalidad}}</p>
+
+<a class="btn btn-primary" href="{% url 'autor-list' %}">Volver</a>
+{% endblock %}
+
+ 
+ 

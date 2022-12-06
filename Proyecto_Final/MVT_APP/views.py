@@ -225,3 +225,53 @@ class EditorialDetail(DetailView):
 
     model = Editorial
     template_name = "detail_editorial.html"
+
+
+    
+
+class LibroDelete(DeleteView):
+
+    model = Libro
+    success_url = "/Libros/"
+
+class LibroEdit(UpdateView):
+
+    model = Libro
+    success_url = "/Libros/"
+    fields = ["fecha_Publicacion", "titulo","genero","autor", "editorial","calificacion"]
+
+class LibroList(LoginRequiredMixin, ListView):
+
+    model = Libro
+    template_name = "list_libro.html"
+
+
+class LibroDetail(DetailView):
+
+    model = Libro
+    template_name = "detail_libro.html"
+
+
+class AutorDelete(DeleteView):
+
+    model = Autor
+    success_url = "/autores/"
+
+class AutorEdit(UpdateView):
+
+    model = Autor
+    success_url = "/autores/"
+    fields = ["fecha_nacimiento", "nombre","apellido","edad", "email","nacionalidad"]
+
+class AutorList(LoginRequiredMixin, ListView):
+
+    model = Autor
+    template_name = "list_autor.html"
+
+
+class AutorDetail(DetailView):
+
+    model = Autor
+    template_name = "detail_autor.html"
+
+     

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<form method="post">
+    {% csrf_token %}
+
+    <p>
+        Estas seguro que queres borrar el libro '{{object.titulo}}'?
+        <input class="btn btn-primary" type="submit" value="Si">
+    </p>
+
+    <a class="btn btn-primary" href="{% url 'libros' %}">Volver</a>
+</form>
+
+{% endblock %}
