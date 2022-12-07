@@ -10,6 +10,7 @@
 <p>Autor: {{libro.autor}}</p>
 <p>Editorial: {{libro.editorial}}</p>
 <p>Calificacion: {{libro.calificacion}}</p>
+<p><img src="/media/{{libro.imagen}}" style="max-width:500px;"></p>
 
 <a class="btn btn-primary" href="{% url 'libro-list' %}">Volver</a>
 {% endblock %}

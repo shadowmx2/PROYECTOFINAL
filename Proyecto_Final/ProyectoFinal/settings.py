@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'MVT_APP',
+    'authentication_app',
 ]
 
 MIDDLEWARE = [
@@ -120,7 +121,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # URL para el LOGIN
-LOGIN_URL  = "/login/"
+LOGIN_URL  = "/auth/login/"
 
 # Configuraciones MEDIA 
 MEDIA_URL = "/media/"

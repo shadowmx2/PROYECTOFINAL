@@ -1,6 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
-
+from django.conf import settings
 
 class Libro(models.Model):
     titulo = models.CharField(max_length=50)
@@ -9,6 +8,8 @@ class Libro(models.Model):
     autor = models.CharField(max_length=50)
     editorial = models.CharField(max_length=50)
     calificacion = models.IntegerField()
+    #portada = models.ImageField(upload_to="portadas",null=True)
+    imagen = models.ImageField(upload_to="media/imagenes/portadas", null=True, blank=True)
 
 class Autor(models.Model):
     nombre = models.CharField(max_length=50)
@@ -22,8 +23,3 @@ class Editorial(models.Model):
     nombre = models.CharField(max_length=50)
     fecha_creacion = models.DateField()
     pais = models.CharField(max_length=50)
-    
-
-class Avatar(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    imagen = models.ImageField(upload_to="avatares", null=True, blank=True)

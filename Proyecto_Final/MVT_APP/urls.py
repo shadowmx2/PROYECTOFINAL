@@ -1,5 +1,8 @@
 from django.urls import path
 from MVT_APP.views import *
+from authentication_app.views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("inicio/", homepage, name="homepage"),
@@ -9,7 +12,7 @@ urlpatterns = [
     path("editoriales/buscar/resultados/", resultados_busqueda_editoriales, name="editorial_resultados"),
     path("libros/buscar/resultados/", resultados_busqueda_libros, name="libro_resultados"),
     path("autores/buscar/resultados/", resultados_busqueda_autores, name="autor_resultados"),
-    path("login/", iniciar_sesion, name="auth-login"),
+    path("auth/login/", iniciar_sesion, name="auth-login"),
     path("registro/", registrar_usuario, name="auth-register"),
     path("logout/", cerrar_sesion, name="auth-logout"),
     path("perfil/editar/", editar_perfil, name="auth-editar-perfil"),
@@ -28,3 +31,4 @@ urlpatterns = [
     path("autores/detalle/<pk>", AutorDetail.as_view(), name="autor-detail"),
 
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
