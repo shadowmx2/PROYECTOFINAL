@@ -13,12 +13,15 @@ from django.views.generic import ListView, DetailView,  UpdateView, DeleteView
 
 
 def homepage(request):
-    
-
     return render(request, 'homepage.html', avatar_mostrar(request))    
 
-    
+
+
+def sobre_nosotros(request):
+    return render(request, 'about.html', avatar_mostrar(request))    
+
 def avatar_mostrar(request):
+    
     if request.user.is_authenticated:            
         ava = Avatar.objects.filter(user= request.user.id)
         if ava.count()> 0:
@@ -32,14 +35,21 @@ def avatar_mostrar(request):
 
 @login_required
 def libros(request):
-    return render(request, 'libros.html')    
+    return render(request, 'libros.html',avatar_mostrar(request))    
 
 @login_required
 def autores(request):
-    return render(request, 'autores.html')    
+    return render(request, 'autores.html',avatar_mostrar(request))    
 
 @login_required
 def editoriales(request):
+    
+    return render(request, "editoriales.html",avatar_mostrar(request))
+
+
+
+@login_required
+def editoriales_crear(request):
     if request.method == "POST":
         formulario = EditorialFormulario(request.POST)
  
@@ -51,8 +61,8 @@ def editoriales(request):
 
             editorial.save()
     formulario = EditorialFormulario()    
-    contexto = {"formulario": formulario}
-    return render(request, "editoriales.html", contexto)
+    contexto = {"formulario": formulario} 
+    return render(request, "editoriales_crear.html", contexto)
 
 @login_required
 def resultados_busqueda_editoriales(request):
@@ -62,7 +72,11 @@ def resultados_busqueda_editoriales(request):
     return render(request, "resultadoeditorial.html", {"editoriales": editoriales})
 
 @login_required
-def libros(request):
+def libros_crear(request):
+
+    #if  request.user.is_superuser:
+     #   redirect("error_permisos.html")
+    
     if request.method == "POST":
         formulario = LibroFormulario(request.POST,files=request.FILES)
  
@@ -74,8 +88,13 @@ def libros(request):
 
             libro.save()
     formulario = LibroFormulario()    
-    #contexto = {"formulario": formulario}
-    return render(request, "libros.html",  {"formulario": formulario})
+ 
+    return render(request, "libros_crear.html",  {"formulario": formulario})
+
+@login_required
+def libros(request):
+   
+    return render(request, "libros.html")
 
 @login_required
 def resultados_busqueda_libros(request):
@@ -86,6 +105,11 @@ def resultados_busqueda_libros(request):
 
 @login_required
 def autores(request):
+    
+    return render(request, "autores.html")
+
+@login_required
+def autores_crear(request):
     if request.method == "POST":
         formulario = AutorFormulario(request.POST)
  
@@ -98,7 +122,7 @@ def autores(request):
             editorial.save()
     formulario = AutorFormulario()    
     contexto = {"formulario": formulario}
-    return render(request, "autores.html", contexto)
+    return render(request, "autores_crear.html", contexto)
 
 @login_required
 def resultados_busqueda_autores(request):

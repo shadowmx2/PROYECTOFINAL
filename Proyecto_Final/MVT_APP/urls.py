@@ -7,16 +7,19 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("inicio/", homepage, name="homepage"),
     path("Libros/", libros, name="libros"),
+    path("Libros/nuevo", libros_crear, name="libro-crear"),
     path("autores/", autores, name="autores"),
+    path("autores/nuevo", autores_crear, name="autores-crear"),
     path("editoriales/", editoriales, name="editoriales"),
+    path("editoriales/nuevo", editoriales_crear, name="editoriales-crear"),
     path("editoriales/buscar/resultados/", resultados_busqueda_editoriales, name="editorial_resultados"),
     path("libros/buscar/resultados/", resultados_busqueda_libros, name="libro_resultados"),
     path("autores/buscar/resultados/", resultados_busqueda_autores, name="autor_resultados"),
-    path("auth/login/", iniciar_sesion, name="auth-login"),
-    path("registro/", registrar_usuario, name="auth-register"),
+    path("accounts/login/", iniciar_sesion, name="auth-login"),
+    path("accounts/signup/", registrar_usuario, name="auth-register"),
     path("logout/", cerrar_sesion, name="auth-logout"),
-    path("perfil/editar/", editar_perfil, name="auth-editar-perfil"),
-    path("perfil/avatar/", agregar_avatar, name="auth-avatar"),    
+    path("accounts/profile/editar/", editar_perfil, name="auth-editar-perfil"),
+    path("accounts/profile/avatar/", agregar_avatar, name="auth-avatar"),    
     path("editoriales/borrar/<pk>", EditorialDelete.as_view(), name="editorial-delete"),
     path("editoriales/actualizar/<pk>", EditorialEdit.as_view(), name="editorial-edit"),
     path("editoriales/listar/", EditorialList.as_view(), name="editorial-list"),
@@ -29,6 +32,7 @@ urlpatterns = [
     path("autores/actualizar/<pk>", AutorEdit.as_view(), name="autor-edit"),
     path("autores/listar/", AutorList.as_view(), name="autor-list"),
     path("autores/detalle/<pk>", AutorDetail.as_view(), name="autor-detail"),
+    path("about/", sobre_nosotros, name="about"),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -25,6 +25,7 @@
                 <a class="navbar-brand" href="{% url 'libros' %}">Libros</a>
                 <a class="navbar-brand" href="{% url 'autores' %}">Autores</a>
                 <a class="navbar-brand" href="{% url 'editoriales' %}">Editoriales</a>
+                <a class="navbar-brand" href="{% url 'about' %}">Sobre nosotros</a>
                 <a href="{% url 'auth-editar-perfil' %}" >{{request.user}}  </a>
                 {% if request.user.is_authenticated  %}           
                 <img src="{{imagen_url}}" style="max-width: 55px;">

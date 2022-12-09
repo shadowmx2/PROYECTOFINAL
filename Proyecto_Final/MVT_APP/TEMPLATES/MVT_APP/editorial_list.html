@@ -10,8 +10,10 @@
         <li>
             {{editorial.nombre}} 
             <a href="{% url 'editorial-detail' editorial.id %}">Detalle</a> 
+            {% if request.user.is_superuser %}
             <a href="{% url 'editorial-edit' editorial.id %}">Actualizar</a> 
             <a href="{% url 'editorial-delete' editorial.id %}">Borrar</a> 
+            {%endif%}
         </li>
     {% endfor %}
 

@@ -89,6 +89,7 @@ def agregar_avatar(request):
 
             usuario = request.user
 
+            
             avatar = Avatar(user=usuario, imagen=data["imagen"])
             avatar.save()
 

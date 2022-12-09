@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block contenido %}
+<h1>Ingresar Libro</h1>
+<p></p>
+
+ 
+
+<form method="post" class="caption" style="text-align: center;" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{ formulario.as_p }}
+
+    <input type="submit" value="Cargar Libro" class="btn btn-primary">
+</form>
+
+</table>
+{% endblock %}

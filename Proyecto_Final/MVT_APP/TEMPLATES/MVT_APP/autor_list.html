@@ -10,8 +10,10 @@
         <li>
             {{autor.nombre}} 
             <a href="{% url 'autor-detail' autor.id %}">Detalle</a> 
+            {% if request.user.is_superuser %}
             <a href="{% url 'autor-edit' autor.id %}">Actualizar</a> 
             <a href="{% url 'autor-delete' autor.id %}">Borrar</a> 
+            {%endif%}
         </li>
     {% endfor %}
 

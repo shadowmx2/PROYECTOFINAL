@@ -14,16 +14,13 @@
              
             <input type="submit" value="Buscar!" class="btn btn-primary" >
             <a href="{% url 'libro-list' %}"  class="btn btn-primary" >Mostrar Todos</a> 
+            {% if request.user.is_superuser %}
+            <a href="{% url 'libro-crear' %}"  class="btn btn-primary" >Agregar</a> 
+            {%endif%}
         </p>
     </form>
 
-<form method="post" class="caption" style="text-align: center;" enctype="multipart/form-data">
-    {% csrf_token %}
-
-    {{ formulario.as_p }}
-
-    <input type="submit" value="Cargar Libro" class="btn btn-primary">
-</form>
+ 
 
 </table>
 {% endblock %}

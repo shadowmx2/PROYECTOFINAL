@@ -10,8 +10,10 @@
         <li>
             {{libro.titulo}} 
             <a href="{% url 'libro-detail' libro.id %}">Detalle</a> 
+            {% if request.user.is_superuser %}
             <a href="{% url 'libro-edit' libro.id %}">Actualizar</a> 
             <a href="{% url 'libro-delete' libro.id %}">Borrar</a> 
+            {%endif%}
         </li>
     {% endfor %}
 
