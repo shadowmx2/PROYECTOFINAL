@@ -121,7 +121,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # URL para el LOGIN
-LOGIN_URL  = "/auth/login/"
+LOGIN_URL  = "/accounts/login/"
 
 # Configuraciones MEDIA 
 MEDIA_URL = "/media/"

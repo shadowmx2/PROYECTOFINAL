@@ -13,9 +13,7 @@
     {{ formulario.as_p }}
 
     <input type="submit" value="Cargar Autor" class="btn btn-primary">
-    {% if request.user.is_superuser %}
-    <a href="{% url 'autores-crear' %}"  class="btn btn-primary" >Agregar</a> 
-    {%endif%}w
+
 </form>
 
 </table>
